@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/boardList.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/img/trello-logo-full.png" alt="Trello logo"></a>
+        </div>
+        <label for="toggle-sidebar" class="icon-phoneScreen">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+            </svg>
+        </label>
+    </div>
+    <input type="checkbox" id="toggle-sidebar" hidden>
+    <div id="overlay"></div>
+    <div class="sidebar">
+        <div class="header-sidebar">
+            <div class="logo"><img src="assets/img/trello-logo-full.png" alt="Trello logo"></div>
+            <label for="toggle-sidebar" class="close-sidebar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                </svg>
+            </label>
+        </div>
+        <div class="work-space">
+            <h6>YOUR WORKSPACES</h6>
+            <ul>
+                <li id="boards" onclick="window.location.href='index.html'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-list-ul" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                    </svg>
+                    <span>Boards</span>
+                </li>
+                <li id="starred_boards" onclick="window.location.href='index.html'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-star" viewBox="0 0 16 16">
+                        <path
+                            d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                    </svg>
+                    <span>Starrred Boards</span>
+                </li>
+                <li id="closed_boards">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-x-square" viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                        <path
+                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                    </svg>
+                    <span>Closed Boards</span>
+                </li>
+            </ul>
+        </div>
+        <div class="your-boards">
+            <div class="header">
+                <h5>Your boards</h5>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus""
+                    viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                </svg>
+            </div>
+
+            <ul class="boards-list" id="sidebarList">
+                <li>
+                    <div class="color-box" style="background: linear-gradient(0.45turn, #ffb100, #fa0c00);"></div>
+                    <div class="board-title">Board TItle 01</div>
+                </li>
+                <li>
+                    <div class="color-box" style="background: linear-gradient(0.45turn, #2609ff, #d20cff);"></div>
+                    <div class="board-title">Board TItle 02</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="main">
+        <div class="heading">
+            <h3 id="headingTitle">Tổ chức sự kiện Year-end Party!</h3>
+            <input type="checkbox" id="starred" hidden>
+            <label for="starred">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+            </label>
+            <div class="btn-screen">
+                <button class="board-screen">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-kanban" viewBox="0 0 16 16">
+                        <path
+                            d="M13.5 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm-11-1a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                        <path
+                            d="M6.5 3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm-4 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm8 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1z" />
+                    </svg>
+                    <span>Board</span>
+                </button>
+                <button class="table-screen">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-table" viewBox="0 0 16 16">
+                        <path
+                            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />
+                    </svg>
+                    <span>Table</span>
+                </button>
+                <!-- Confirm delete -->
+                <button class="close-board" data-bs-toggle="modal" data-bs-target="#confirmClose">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-x-square" viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                        <path
+                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                    </svg>
+                    <span>Close this board</span> 
+                </button>
+            </div>
+            <button class="filter" data-bs-toggle="modal" data-bs-target="#modalFilter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+                </svg>
+                <span>Filters</span>
+            </button>
+        </div>
+
+        <div class="maining" id="bodyList">
+            <div class="list" id="taskList">
+                <div class="head-list">
+                    <span id="head_list_title">Todo</span>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrows-angle-contract" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707M15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-three-dots" viewBox="0 0 16 16">
+                            <path
+                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-x" viewBox="0 0 16 16">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </div>
+                </div>
+                <!--  -->
+                <ul class="main-list" id="taskBodyList">
+                    <li>
+                        <input type="checkbox" id="done" hidden>
+                        <label for="done">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                        </label>
+                        <span id="task">Thuê DJ</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-x" viewBox="0 0 16 16">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </li>
+                    <!--  -->
+                    <li>
+                        <input type="checkbox" id="done-2" hidden>
+                        <label for="done-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                        </label>
+                        <span data-bs-toggle="modal" data-bs-target="#modalDescriptionCard">Lên kịch bản chương trình</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" data-bs-toggle="modal" data-bs-target="#confirmClose" 
+                            class="bi bi-x" viewBox="0 0 16 16">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="done-3" hidden>
+                        <label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                        </label>
+                        <span>Thuê MC</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-x" viewBox="0 0 16 16">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </li>
+                </ul>
+                <div class="footer-list">
+                    <div class="add-card" onclick="addTask(event)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-plus" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg>
+                        <input type="text" id="addTask" placeholder="Add a card..." onkeypress="handleKeyPress(event)"
+                            autocomplete="off">
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-credit-card" viewBox="0 0 16 16">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
+                        <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="list">
+                <div class="head-list">
+                    <span>In progess</span>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrows-angle-contract" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707M15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-three-dots" viewBox="0 0 16 16">
+                            <path
+                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-x" viewBox="0 0 16 16">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </div>
+                </div>
+                <ul class="main-list">
+                    <!--  -->
+                </ul>
+                <div class="footer-list">
+                    <div class="add-description">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-plus" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg>
+                        <span>Add a card</span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-credit-card" viewBox="0 0 16 16">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
+                        <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                    </svg>
+                </div>
+            </div>
+            <!-- <div class="list">
+                <div class="footer-list">
+                    <div class="add-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-plus" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg>
+                        <span>Add another list</span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Modal Thêm board -->
+    <div class="create-board-modal">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title fs-5" id="staticBackdropLabel">Create board</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="choose">
+                            <h3>Background</h3>
+                            <div class="background-img">
+                                <div class="background-option"><img src="assets/img/BackgroundboardCard1.png"
+                                        alt="background" data-value="1"></div>
+                                <div class="background-option"><img src="assets/img/BackgroundboardCard2.png"
+                                        alt="background" data-value="2"></div>
+                                <div class="background-option"><img src="assets/img/BackgroundboardCard3.png"
+                                        alt="background" data-value="3"></div>
+                                <div class="background-option"><img src="assets/img/BackgroundboardCard4.png"
+                                        alt="background" data-value="4"></div>
+                            </div>
+                        </div>
+                        <div class="choose">
+                            <h3>Color</h3>
+                            <div class="color-box">
+                                <div class="color-item" data-value="cl1"
+                                    style="background: linear-gradient(0.45turn, #ffb100, #fa0c00);">
+                                </div>
+                                <div class="color-item" data-value="cl2"
+                                    style="background: linear-gradient(0.45turn, #2609ff, #d20cff);">
+                                </div>
+                                <div class="color-item" data-value="cl3"
+                                    style="background: linear-gradient(0.45turn, #00ff2f, #00ffc8);">
+                                </div>
+                                <div class="color-item" data-value="cl4"
+                                    style="background: linear-gradient(0.45turn, #00ffe5, #004bfa);">
+                                </div>
+                                <div class="color-item" data-value="cl5"
+                                    style="background: linear-gradient(0.45turn, #ffa200, #edfa00);">
+                                </div>
+                                <div class="color-item" data-value="cl6"
+                                    style="background: linear-gradient(0.45turn, #ff00ea, #fa0c00);">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="choose">
+                            <h3>Board title <span>*</span></h3>
+                            <div class="title-input">
+                                <input type="text" id="boardTitleAdd" placeholder="E.g. Shopping list for birthday...">
+                                <p id="validate">👋 Please provide a valid board title</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="createBoard()">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Description card -->
+    <div class="add-description-modal">
+        <div class="modal fade" id="modalDescriptionCard" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <input type="checkbox" id="done_modal" hidden>
+                        <label for="done_modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                        </label>
+                        <div class="head-text">
+                            <h4 class="modal-title fs-5" id="modalDescriptionTitle" onclick="editTaskTitle(event)">Chưa có tiêu đề</h4>
+                            <div class="in-list">
+                                <span>in list</span>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#moveCard">IN-PROGRESS
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="description">
+                            <div class="header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-text-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+                                </svg>
+                                <h5>Description</h5>
+                            </div>
+                            <div class="description-text">
+                                <div class="editor" contenteditable="true" id="modalDescriptionContent"></div>
+                                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save</button>
+                                <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        <div class="other-opsion">
+                            <div class="opsion-btn">
+                                <button class="label-color" data-bs-toggle="modal" data-bs-target="#labelModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-tag" viewBox="0 0 16 16">
+                                        <path
+                                            d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0" />
+                                        <path
+                                            d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1m0 5.586 7 7L13.586 9l-7-7H2z" />
+                                    </svg>
+                                    <span>Labels</span>
+                                </button>
+                                <button class="due-date" data-bs-toggle="modal" data-bs-target="#dueDate">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-clock" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
+                                    </svg>
+                                    <span>Dates</span>
+                                </button>
+                                <button class="delete-task" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                                    </svg>
+                                    <span>Delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Due date modal dueDate-->
+    <div class="due-date-modal">
+        <div class="modal fade" id="dueDate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="dueDateLabel">Dates</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="start-date">
+                            <label for="startDate">Start date</label>
+                            <div class="date-input">
+                                <input type="checkbox" id="allowStartdate">
+                                <input type="date" class="form-control" id="startDate">
+                            </div>
+                        </div>
+                        <div class="due-date">
+                            <label for="#">Due date</label>
+                            <div class="date-input">
+                                <input type="checkbox" id="allowDuedate">
+                                <input type="date" id="dateInput" placeholder="MM/DD/YYY">
+                                <input type="time" step="1" id="timeInput" placeholder="hh:mm:ss">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="setDueDate()">Save</button>
+                        <button type="button" style="background-color: #dedfe0;" class="btn" data-bs-dismiss="modal"
+                            onclick="switchModal('dueDate', 'modalDescriptionCard')">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal xác nhận đóng -->
+    <div class="delete-modal">
+        <div class="modal fade" id="confirmClose" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="assets/img/attention.png" alt="">
+                        <h1>Are you sure?</h1>
+                        <p>You won't be able to revert this!</p>
+                        <div class="choose-btn">
+                            <button type="button" class="btn btn-primary" onclick="closeBoard()">Yes, close
+                                it!</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal xác nhận xoá -->
+    <div class="delete-modal">
+        <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="assets/img/attention.png" alt="">
+                        <h1>Are you sure?</h1>
+                        <p>You won't be able to revert this!</p>
+                        <div class="choose-btn">
+                            <button type="button" class="btn btn-primary" onclick="deleteList()">Yes, delete
+                                it!</button>
+                            <button type="button" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="delete-modal">
+        <div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="assets/img/attention.png" alt="">
+                        <h1>Are you sure?</h1>
+                        <p>You won't be able to revert this!</p>
+                        <div class="choose-btn">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="deleteTask()">Yes, delete
+                                it!</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="switchModal('deleteTaskModal', 'modalDescriptionCard')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal move card -->
+    <div class="move-card">
+        <div class="modal fade" id="moveCard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="exampleModalLabel">Move card</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <span>Select destination</span>
+                        <div class="board-title">
+                            <label for="boardTitle">Board</label><br>
+                            <input type="text" id="boardTitle" value="Tổ chức sự kiện end-year party">
+                        </div>
+                        <div class="list-position">
+                            <div class="list-board">
+                                <label for="listBoard">List</label><br>
+                                <select id="listBoard">
+                                    <option value="1">To-do</option>
+                                    <option value="2">Doing</option>
+                                    <option value="3">Done</option>
+                                </select>
+                            </div>
+                            <div class="position">
+                                <label for="position">Position</label><br>
+                                <input type="number" id="position" min="1" max="100" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Move</button>
+                        <button type="button" style="background-color: #dedfe0;" class="btn" data-bs-dismiss="modal"
+                            onclick="switchModal('moveCard', 'modalDescriptionCard')">Cancel</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+
+    <!-- Modal lọc -->
+    <div class="modal-filter">
+        <div class="modal fade" id="modalFilter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-5" id="exampleModalLabel">Filter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <label for="keyword" class="label-filter">Keyword</label>
+                            <input type="text" class="form-control" id="keyword" placeholder="Enter a keyword...">
+                            <span class="search-card">Search card</span>
+                            <label for="status" class="label-filter">Card status</label>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="completed">
+                                    <label for="completed"><span>Marked as complete</span></label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="incompleted">
+                                    <label for="incompleted"><span>Not marked as complete</span></label>
+                                </li>
+                            </ul>
+                            <label for="due-date" class="label-filter">Due date</label>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="noDate">
+                                    <label for="noDate">
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-calendar-x" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708" />
+                                                <path
+                                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                            </svg>
+                                        </div>
+                                        <span>No dates</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="overDue">
+                                    <label for="overDue">
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                                                <path
+                                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
+                                            </svg>
+                                        </div>
+                                        <span>Overdue</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="dueNextday">
+                                    <label for="dueNextday">
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                                                <path
+                                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
+                                            </svg>
+                                        </div>
+                                        <span>Due in future</span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <label for="label-color" class="label-filter">Labels</label>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="noLabels">
+                                    <label for="noLabels">
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0" />
+                                                <path
+                                                    d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1m0 5.586 7 7L13.586 9l-7-7H2z" />
+                                            </svg>
+                                        </div>
+                                        <span>No labels</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="labelColor1">
+                                    <label for="labelColor1" style="background-color: #4bce97;"></label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="labelColor2">
+                                    <label for="labelColor2" style="background-color: #f5cd47;"></label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="labelColor3">
+                                    <label for="labelColor3" style="background-color: #fea362;"></label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="labelColor4">
+                                    <label for="labelColor4" style="background-color: #f87168;"></label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="labelColor5">
+                                    <label for="labelColor5" style="background-color: #9f8fef;"></label>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="filterTask()">Filter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- labels modal labelModal-->
+    <div class="label-modal">
+        <div class="modal fade" id="labelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="exampleModalLabel">Coming soon</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="select-color">
+                            <label for="color">Labels</label>
+                            <div class="color-box" id="labelColorList">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-primary" data-bs-target="#createLabelModal" data-bs-toggle="modal">Create</button>
+                        <button type="button" style="background-color: #dedfe0;" class="btn" data-bs-dismiss="modal"
+                            onclick="switchModal('labelModal', 'modalDescriptionCard')">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- create label -->
+    <div class="create-label-modal">
+        <div class="modal fade" id="createLabelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="exampleModalLabel">Create label</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="title">
+                            <label for="title">Title</label>
+                            <input type="text" id="title">
+                        </div>
+                        <div class="select-color">
+                            <label for="">Select a color</label>
+                            <div class="color-box">
+                                <div class="color-item-label" style="background-color: #baf3db;" data-value="clLb1"></div>
+                                <div class="color-item-label" style="background-color: #f8e6a0;" data-value="clLb2"></div>
+                                <div class="color-item-label" style="background-color: #fedec8;" data-value="clLb3"></div>
+                                <div class="color-item-label" style="background-color: #ffd5d2;" data-value="clLb4"></div>
+                                <div class="color-item-label" style="background-color: #dfd8fd;" data-value="clLb5"></div>
+                                <div class="color-item-label" style="background-color: #4bce97;" data-value="clLb6"></div>
+                                <div class="color-item-label" style="background-color: #f5cd47;" data-value="clLb7"></div>
+                                <div class="color-item-label" style="background-color: #fea362;" data-value="clLb8"></div>
+                                <div class="color-item-label" style="background-color: #f87618;" data-value="clLb9"></div>
+                                <div class="color-item-label" style="background-color: #9f8fef;" data-value="clLb10"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Create</button>
+                        <button type="button" style="background-color: #dedfe0;" class="btn" data-bs-dismiss="modal"
+                            onclick="switchModal('createLabelModal', 'labelModal')">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- edit label -->
+    <div class="edit-label-modal">
+        <div class="modal fade" id="editLabelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="exampleModalLabel">Edit label</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="title">
+                            <label for="title_edit">Title</label>
+                            <input type="text" id="title">
+                        </div>
+                        <div class="select-color">
+                            <label for="">Select a color</label>
+                            <div class="color-box">
+                                <div class="color-item-label" style="background-color: #baf3db;" data-value="clLb1"></div>
+                                <div class="color-item-label" style="background-color: #f8e6a0;" data-value="clLb2"></div>
+                                <div class="color-item-label" style="background-color: #fedec8;" data-value="clLb3"></div>
+                                <div class="color-item-label" style="background-color: #ffd5d2;" data-value="clLb4"></div>
+                                <div class="color-item-label" style="background-color: #dfd8fd;" data-value="clLb5"></div>
+                                <div class="color-item-label" style="background-color: #4bce97;" data-value="clLb6"></div>
+                                <div class="color-item-label" style="background-color: #f5cd47;" data-value="clLb7"></div>
+                                <div class="color-item-label" style="background-color: #fea362;" data-value="clLb8"></div>
+                                <div class="color-item-label" style="background-color: #f87618;" data-value="clLb9"></div>
+                                <div class="color-item-label" style="background-color: #9f8fef;" data-value="clLb10"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" style="background-color: #dedfe0;" class="btn" data-bs-dismiss="modal"
+                            onclick="switchModal('editLabelModal', 'labelModal')">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/boardList.js"></script>
+    <script src="js/opsion.js"></script>
+</body>

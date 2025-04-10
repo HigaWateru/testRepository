@@ -1,0 +1,211 @@
+body{
+    min-width: 710px;
+}
+.sidebar .your-boards{
+    padding: 20px;
+}
+.your-boards .header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.your-boards .header h5{
+    font-size: 16px;
+}
+.your-boards .header svg{
+    font-weight: bold;
+    cursor: pointer;
+}
+.your-boards .boards-list{
+    gap: 15px;
+}
+.boards-list li{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+.boards-list li .color-box{
+    width: 30px;
+    height: 20px;
+    border-radius: 5px;
+}
+.boards-list li .board-title{
+    cursor: pointer;
+}
+.main{
+    min-height: calc(100vh - 50px);
+}
+.main .heading{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+    background-color: #f1f2f4;
+    position: relative;
+}
+.heading label[for="starred"] svg{
+    cursor: pointer;
+}
+.btn-screen button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    outline: none;
+    color: #555;
+    background-color: transparent;
+}
+.btn-screen button span{
+    margin-left: 5px;
+    font-weight: 500;
+}
+.btn-screen .board-screen{
+    background-color: #666;
+    color: white;
+    cursor: default;
+}
+.heading .filter{
+    position: absolute;
+    right: 20px;
+    font-weight: 500;
+    color: #555;
+    outline: none;
+    padding: 10px 20px;
+    background-color: transparent;
+}
+.filter span{
+    margin-left: 5px;
+}
+.maining{
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 30px;
+}
+.list{
+    align-self: flex-start;
+    width: calc(100% /4 - 35px);
+    background-color: #f1f2f4;
+    padding: 20px 5px;
+    border-radius: 10px;
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.3);
+}
+.list .head-list{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.head-list span{
+    font-weight: 500;
+    font-size: 16px;
+    width: 60%;
+    height: 30px;
+}
+.head-list input{
+    background-color: transparent;
+
+}
+.head-list .icon svg{
+    cursor: pointer;
+    margin-left: 15px;
+    width: 18px;
+}
+#starred + label svg{
+    color: #555;
+    transition: color 0.3 ease;
+}
+#starred:checked + label svg{
+    color: rgb(255, 200, 0) ;
+}
+.main-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+.main-list li{
+    position: relative;
+    width: 100%;
+    background-color: white;
+    padding: 10px 15px 5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.main-list li label{
+    margin-right: 5px;
+}
+.main-list li span{
+    cursor: pointer;
+}
+.main-list li label svg{
+    font-weight: bold;
+    cursor: pointer;
+}
+.main-list li .bi-x{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+.check-complete + label svg{
+    color: #777;
+    transition: color 0.3 ease;
+    cursor: pointer;
+}
+.check-complete:checked + label svg{
+    color: rgb(21, 255, 0);
+}
+[id^="complete-"]:not(:checked) + label svg{
+    color: #777;
+}
+[id^="complete-"]:checked + label svg{
+    color: rgb(21, 255, 0);
+}
+
+.footer-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+.footer-list .add-card{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #555;
+    cursor: pointer;
+    width: calc(100% - 40px);
+}
+.footer-list svg{
+    cursor: pointer;
+}
+.add-card input{
+    background-color: transparent;
+    width: 80%;
+}
+.list:last-child{
+    box-shadow: none;
+}
+.footer-list:last-child{
+    font-weight: 500;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1350px) {
+    .maining{
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .list{
+        width: calc(100% / 3 - 15px);
+    }
+}
+@media screen and (max-width: 790px) {
+    .maining{
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .list{
+        width: calc(100% / 2 - 15px);
+    }
+}

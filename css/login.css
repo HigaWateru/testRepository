@@ -1,0 +1,108 @@
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container{
+    max-width: 300px;
+}
+.logo{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+h2{
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.input-group{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid silver;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.input-group input{
+    width: 100%;
+    padding: 10px;
+}
+.input-group input:not(:last-child){
+    border-bottom: 1px solid silver;
+}
+button{
+    width: 100%;
+}
+footer{
+    margin-top: 50px;
+    color: rgb(105, 105, 105);
+}
+.errorCard{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background-color: #ffe5e8;
+    padding: 20px;
+    border-radius: 10px;
+    animation: fadeIn 0.5s ease-in;
+}
+.headCard{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.headCard div h5{
+    font-size: 18px;
+    width: 160px;
+}
+.errorCard p{
+    padding: 0 25px;
+}
+.bi-x-circle{
+    cursor: pointer;
+}
+
+.allowCard{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    align-content: center;
+    gap: 10px;
+    background-color: #e5fff0;
+    border-radius: 10px;
+    padding: 20px 20px 0;
+    animation: fadeIn 0.5s ease-out;
+}
+.hidden{
+    animation: fadeOut 0.5s ease-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}

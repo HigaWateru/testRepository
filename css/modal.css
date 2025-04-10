@@ -1,0 +1,419 @@
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+.choose{
+    display: flex;
+    flex-wrap: wrap;
+}
+.choose:nth-child(2){
+    border-top: 1px solid silver;
+    padding: 20px 0;
+    border-bottom: 1px solid silver;
+}
+.choose h3{
+    width: 100%;
+}
+.choose .background-img{
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+}
+.choose .background-img .background-option{
+    position: relative;
+    width: calc(100% /4 - 5px);
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.background-option img{
+    width: 100%;
+}
+
+.background-option.selected::after{
+    font-family: "Font Awesome 5 Free";
+    content: '\f00c';
+    position: absolute;
+    color: white;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+    font-size: 1em;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.choose .color-box{
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.choose .color-box .color-item{
+    position: relative;
+    width: calc(100% /6 - 5px);
+    height: 40px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.color-item.selected::after{
+    font-family: "Font Awesome 5 Free";
+    content: '\f00c';
+    position: absolute;
+    color: white;
+    font-size: 1em;
+    font-weight: 900;
+    pointer-events: none;
+}
+
+
+.choose:last-child h3{
+    margin-top: 20px;
+    position: relative;
+}
+.choose:last-child h3 span{
+    position: absolute;
+    top: -3px;
+    left: 130px;
+    color: red;
+}
+.choose:last-child .title-input{
+    width: 100%;
+    padding: 10px;
+}
+.title-input input{
+    border: 1px solid silver;
+    width: 100%;
+    padding: 15px 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.modal-filter .modal-header h5{
+    width: 100%;
+    text-align: center;
+}
+.modal-filter .modal-body{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+}
+.modal-filter .label-filter{
+    font-weight: 500;
+    width: 100%;
+}
+.modal-filter form .search-card{
+    padding: 5px 0;
+    font-size: 13px;
+    font-weight: 400;
+    color: #555;
+}
+.modal-filter form ul{
+    padding: 0 10px;
+    gap: 10px;
+}
+.modal-filter form ul li{
+    width: 100%;
+    display: flex;
+}
+
+.modal-filter li label{
+    display: flex;
+    gap: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+.modal-filter li label span{
+    margin-top: 5px;
+}
+.modal-filter li label .icon{
+    border: none;
+    width: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-filter li label[for="noDate"] .icon{
+    background-color: #c9c9ca;
+}
+.modal-filter li label[for="overDue"] .icon{
+    background-color: #c9372c;
+    color: white;
+}
+.modal-filter li label[for="dueNextday"] .icon{
+    background-color: #f5cd47;
+    color: white;
+}
+.modal-filter li label[for="noLabels"] .icon{
+    background-color: #c9c9ca;
+}
+.modal-filter li label{
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.add-description-modal .modal-content{
+    padding-bottom: 20px;
+}
+.add-description-modal .modal-header{
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+}
+.add-description-modal .modal-header .head-text .in-list span{
+    margin-right: 10px;
+}
+.add-description-modal .modal-header .head-text h4{
+    cursor: pointer;
+}
+.add-description-modal .modal-header .head-text input{
+    width: 170%;
+    font-size: 24px;
+    font-weight: 500;
+    border: 1px solid;
+}
+.in-list button{
+    padding: 2px 7px;
+    font-weight: bold;
+    color: #172b4d;
+    outline: none;
+}
+.add-description-modal .modal-body{
+    display: flex;
+    flex-direction: row;
+}
+.add-description-modal .modal-header #done_modal + label svg{
+    color: #555;
+    transition: fill 0.3s ease;
+}
+.add-description-modal .modal-header #done_modal:checked + label svg{
+    color: rgb(21, 255, 0);
+}
+.description{
+    width: 70%;
+}
+.description .header{
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+.description .description-text{
+    padding-left:  40px;
+}
+.editor {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 250px;
+    margin-bottom: 20px;
+}
+.description-text .btn{
+    margin: 0 5px;
+}
+.other-opsion{
+    width: 30%;
+    padding: 10px 20px;
+}
+.other-opsion .opsion-btn{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+}
+.other-opsion .opsion-btn button{
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    font-weight: 400;
+    gap: 10px;
+}
+.other-opsion .opsion-btn .delete-task{
+    color: white;
+    background-color: #c9372c;
+}
+
+.delete-modal .modal-body{
+    padding: 40px;
+    text-align: center;
+    gap: 10px;
+}
+.delete-modal .modal-body img{
+    display: inline-block;
+    margin: 40px auto;
+    width: 88px;
+}
+.delete-modal .modal-body p{
+    font-size: 20px;
+    color: #555;
+}
+.delete-modal .modal-body .choose-btn button{
+    margin: 0 5px;
+}
+
+.due-date-modal .modal-body{
+    padding: 15px;
+    gap: 20px;
+}
+.due-date-modal .modal-body .date-input{
+    display: flex;
+    gap: 7px;
+}
+#allowStartdate:not(:checked) ~ #startDate,
+#allowDuedate:not(:checked) ~ #dateInput,
+#allowDuedate:not(:checked) ~ #timeInput{
+    pointer-events: none;
+    opacity: 0.5;
+}
+#allowStartdate:checked ~ #startDate,
+#allowDuedate:checked ~ #dateInput,
+#allowDuedate:checked ~ #timeInput{
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.due-date-modal .modal-footer{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px 5px 5px;
+}
+.due-date-modal .modal-footer button{
+    width: 100%;
+}
+
+.label-modal .modal-header h4{
+    width: 100%;
+    text-align: center;
+}
+.label-modal .modal-body{
+    padding: 20px;
+    gap: 10px;
+}
+
+.label-modal .modal-body .select-color .color-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+    padding: 5px;
+}
+.label-modal .modal-body .select-color .color-item-label{
+    width: 100%;
+    height: 30px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+.color-item-label label{
+    width: 100%;
+    margin-top: 7px;
+    padding-left: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+}
+.label-modal .modal-footer{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.move-card .modal-header h4{
+    width: 100%;
+    text-align: center;
+}
+.move-card .modal-body{
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.move-card .modal-body .board-title{
+    width: 100%;
+ }
+.move-card .modal-body span{
+    width: 100%;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.move-card .modal-body label{
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+.move-card .modal-body input{
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.move-card .modal-body select{
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+.move-card .modal-body .list-position{
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+.move-card .modal-body .list-board{
+    width: 70%;
+}
+.move-card .modal-body .position{
+    width: 30%;
+}
+
+.create-label-modal + .edit-label-modal .modal-header h4{
+    width: 100%;
+    text-align: center;
+}
+.create-label-modal + .edit-label-modal .modal-body{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.create-label-modal + .edit-label-modal .modal-body .title{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.create-label-modal + .edit-label-modal .modal-body label{
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+.create-label-modal + .edit-label-modal .modal-body .title input{
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 5px;
+}
+.create-label-modal + .edit-label-modal .modal-body .color-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+    padding: 5px;
+}
+.create-label-modal + .edit-label-modal .modal-body .color-item-label{
+    width: calc(100% / 5 - 5px);
+    height: 30px;
+    cursor: pointer;
+    border-radius: 3px;
+}
