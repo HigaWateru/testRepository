@@ -4,7 +4,7 @@ function signOut() {
     localStorage.removeItem('userBoards')
     localStorage.removeItem('boardID')
     localStorage.removeItem('closedBoards')
-    setTimeout(() => window.location.href = '../html/login.html', 500)
+    setTimeout(() => window.location.href = 'https://higawateru.github.io/testRepository/html/login.html', 500)
 }
 
 let dataStructure = JSON.parse(localStorage.getItem('dataStructure')) || []
