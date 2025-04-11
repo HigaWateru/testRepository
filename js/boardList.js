@@ -481,6 +481,9 @@ document.getElementById("modalDescriptionCard").addEventListener("show.bs.modal"
     if (!boardList) return
 
     let listIndex = Array.from(trigger.closest('.list').parentNode.children).indexOf(trigger.closest('.list'))
+    let inList = document.getElementById("inList")
+    inList.innerText = boardList.lists[listIndex].title.toUpperCase()
+
     let taskIndex = boardList.lists[listIndex].tasks.findIndex(task => task.id === Number(taskID))
     if (taskIndex !== -1) {
         let task = boardList.lists[listIndex].tasks[taskIndex]
@@ -583,6 +586,48 @@ document.getElementById("dueDate").addEventListener("show.bs.modal", function (e
         }
     }
 })
+
+document.getElementById("moveCard").addEventListener("show.bs.modal", function (event) {
+    const trigger = event.relatedTarget
+    if(!trigger) return
+    const boardID = Number(localStorage.getItem("boardID"))
+    let boardList = user.boards.find(board => board.id === boardID)
+    if (!boardList) return
+    
+    let taskList = document.getElementById("taskListOpt")
+    taskList.innerHTML = ""
+    boardList.lists.forEach(list => {
+        console.log(list.title)
+        taskList.innerHTML += `
+            <option value="${list.id}">${list.title}</option>
+        `
+    })
+})
+
+function moveTask(){
+    const taskID = Number(localStorage.getItem("taskID"))
+    const boardID = Number(localStorage.getItem("boardID"))
+    let boardList = user.boards.find(board => board.id === boardID)
+    if (!boardList) return
+
+    let listID = document.getElementById("taskListOpt").value
+    for (let list of boardList.lists) {
+        let task = list.tasks.find(task => task.id === taskID)
+        if (task) {
+            let newList = boardList.lists.find(list => list.id === Number(listID))
+            if(newList){
+                newList.tasks.push(task)
+                list.tasks.splice(list.tasks.indexOf(task), 1)
+                localStorage.setItem('dataStructure', JSON.stringify(dataStructure))
+                loadBoardPage()
+            }
+            const moveCardModal = document.getElementById("moveCard")
+            const moveCardModalInstance = bootstrap.Modal.getInstance(moveCardModal)
+            moveCardModalInstance.hide()
+            return
+        }
+    }
+}
 
 //////////////////////Filter + Label//////////////////////
 function compareDate(time1, time2){

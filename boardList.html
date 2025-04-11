@@ -378,7 +378,7 @@
                             <h4 class="modal-title fs-5" id="modalDescriptionTitle" onclick="editTaskTitle(event)">Chưa có tiêu đề</h4>
                             <div class="in-list">
                                 <span>in list</span>
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#moveCard">IN-PROGRESS
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#moveCard" id="inList">IN-PROGRESS
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                                         <path
@@ -547,12 +547,12 @@
                         <span>Select destination</span>
                         <div class="board-title">
                             <label for="boardTitle">Board</label><br>
-                            <input type="text" id="boardTitle" value="Tổ chức sự kiện end-year party">
+                            <input type="text" id="boardTitle">
                         </div>
                         <div class="list-position">
                             <div class="list-board">
-                                <label for="listBoard">List</label><br>
-                                <select id="listBoard">
+                                <label for="taskListOpt">List</label><br>
+                                <select id="taskListOpt">
                                     <option value="1">To-do</option>
                                     <option value="2">Doing</option>
                                     <option value="3">Done</option>
@@ -565,7 +565,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Move</button>
+                        <button type="button" class="btn btn-primary" onclick="moveTask()">Move</button>
                         <button type="button" style="background-color: #dedfe0;" class="btn" data-bs-dismiss="modal"
                             onclick="switchModal('moveCard', 'modalDescriptionCard')">Cancel</button>
                     </div>
